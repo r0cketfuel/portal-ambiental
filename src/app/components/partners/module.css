@@ -1,0 +1,22 @@
+.partners {
+    display:                    grid;
+    grid-template-columns:		repeat(4, minmax(0, 1fr));
+    justify-items:              center;
+    align-items:                center;
+    gap:                        40px;
+}
+
+.partners div {
+    height:                     100%;
+    width:                      100%;
+    border:                     1px solid rgb(220, 220, 220);
+    display:                    flex;
+    justify-content:            center;
+    align-items:                center;
+    padding:                    12px;
+    background-color:           rgb(230, 230, 230);
+    box-sizing:                 border-box;
+}
+.partners img {
+    width:                      100%;
+}

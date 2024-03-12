@@ -1,0 +1,32 @@
+header .top-header {
+    user-select:                    none;
+	background: 					rgb(34, 33, 150)
+}
+
+header .top-header ul,
+header .top-header li {
+    margin:                         0;
+    padding:                        0;
+	list-style: 					none;
+	color: 						    white;
+}
+
+header .top-header a {
+    text-decoration:                none;
+    cursor:                         pointer;
+    color:                          #d1d0f9;;
+}
+
+header .top-header .header-container {
+    max-width:                      var(--containers-max-width);
+    margin:                         0 auto;
+    padding:                        var(--containers-padding);
+    box-sizing:                     border-box;
+}
+
+header .top-header .header-container .social-media {
+	display: 						flex;
+    flex-flow:                      row nowrap;
+    justify-content:                flex-end;
+    gap:                            10px;
+}

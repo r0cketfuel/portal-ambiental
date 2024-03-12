@@ -1,0 +1,19 @@
+footer {
+    user-select:                    none;
+    border-top:                     5px solid #222196;
+    background:                     #02028e;
+    margin-top:                     50px;
+}
+
+footer ul,
+footer li {
+    margin:                         0;
+    padding:                        0;
+	list-style: 					none;
+}
+
+footer .footer-container {
+    max-width:                      var(--containers-max-width);
+    margin:                         0 auto;
+    padding:                        var(--containers-padding);
+}
