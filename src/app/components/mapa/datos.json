@@ -1,0 +1,33 @@
+{
+	"calidadAire": {
+		"sensor1": {
+			"lat": -38.743454,
+			"lng": -62.274666,
+			"contenido": "<div class='nfo'><h4>EMCABB 1</h4><div id='valores_emcabb1'>Datos ficticios para EMCABB 1</div></div>"
+		},
+		"sensor2": {
+			"lat": -38.7821861111111,
+			"lng": -62.2661972222222,
+			"contenido": "<div class='nfo'><h4>EMCABB 2</h4><div id='valores_emcabb2'>Datos ficticios para EMCABB 2</div></div>"
+		},
+		"sensor3": {
+			"lat": -38.6716055555555,
+			"lng": -62.358825,
+			"contenido": "<div class='nfo'><h4>EMCABB 3</h4><div id='valores_emcabb2'>Datos ficticios para EMCABB 3</div></div>"
+		}
+	},
+	"ruido": {
+		"sensor1": {
+			"lat": -38.78135361009555,
+			"lng": -62.267980169358275,
+			"contenido": "<div class='nfo'><h4>CTE</h4><div id='valores_emcabb1'>Datos ficticios para CTE</div></div>"
+		}
+	},
+	"boyas": {
+		"sensor1": {
+			"lat": -38.78135361009900,
+			"lng": -62.367980169358300,
+			"contenido": "<div class='nfo'><h4>CTE</h4><div id='valores_emcabb1'>Datos ficticios para CTE</div></div>"
+		}
+	}
+}

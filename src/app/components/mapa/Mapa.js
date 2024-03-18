@@ -1,48 +1,55 @@
-"use client"
-import React, { useEffect } from 'react';
+"use client"; // Se agrega "use client" para usar hooks
+
+import React, { useState, useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import axios from 'axios'; // Si prefieres usar axios en lugar de fetch
+import "./module.css";
+import datos from './datos.json';
 
 const MapaBahia = () => {
+    const [selectedDataType, setSelectedDataType] = useState('calidadAire');
+    const mapRef = useRef(null);
+    const layerMarkersRef = useRef(null);
+
     useEffect(() => {
-        var mapa = L.map('mapabahia');
-        mapa.setView(new L.LatLng(-38.725465, -62.281848), 12);
-        var OpenMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        // Crear el mapa una vez
+        const map = L.map('mapabahia').setView(new L.LatLng(-38.725465, -62.281848), 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 16,
             minZoom: 12,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
             opacity: 1,
             scrollWheelZoom: false
-        });
+        }).addTo(map);
+        mapRef.current = map;
 
-        OpenMap.addTo(mapa);
-
-        var layerMarkers = L.layerGroup().addTo(mapa);
-
-        // Sensor 1
-        fetch("https://cte.controlambiental.bahia.gob.ar/mediciones/calidad_aire/emcabb1.php")
-            .then(response => response.json())
-            .then(data => {
-                var EMCABB1Lat = -38.743454;
-                var EMCABB1Lng = -62.274666;
-
-                var contenido1 = "<div class='nfo'><h4>EMCABB 1</h4>";
-                contenido1 += "<div id='valores_emcabb1'>" + data.tablaMarcador + "</div>";
-                contenido1 += "</div>";
-                var marker1 = L.marker([EMCABB1Lat, EMCABB1Lng]);
-                marker1.bindPopup(contenido1);
-                marker1.addTo(layerMarkers);
-            })
-            .catch(error => console.error('Error fetching sensor 1:', error));
-
-        // Agregar solicitudes para los otros sensores de manera similar
+        // Crear una capa de marcadores una vez
+        const layerMarkers = L.layerGroup().addTo(map);
+        layerMarkersRef.current = layerMarkers;
 
         return () => {
-            // Limpia el mapa al desmontar el componente
-            mapa.remove();
+            map.remove();
         };
     }, []);
+
+    useEffect(() => {
+        renderMarkers();
+    }, [selectedDataType]);
+
+    const renderMarkers = () => {
+        const selectedData = datos[selectedDataType];
+        layerMarkersRef.current.clearLayers(); // Limpiar marcadores existentes
+        Object.keys(selectedData).forEach(sensorKey => {
+            const sensorData = selectedData[sensorKey];
+            const marker = L.marker([sensorData.lat, sensorData.lng]);
+            marker.bindPopup(sensorData.contenido);
+            marker.addTo(layerMarkersRef.current);
+        });
+    };
+
+    const handleDataTypeChange = (dataType) => {
+        setSelectedDataType(dataType);
+    };
 
     return (
         <section id="section2">
@@ -50,7 +57,15 @@ const MapaBahia = () => {
                 <div className="map-header-icon"><i className="fa-solid fa-location-dot"></i></div>
                 <div className="map-header-description">Sensores ambientales</div>
             </div>
-            <div id="mapabahia" style={{ height: '800px' }}></div>
+            <div id="mapabahia">
+                <div className="leaflet-control map-selector">
+                    <select value={selectedDataType} onChange={(e) => handleDataTypeChange(e.target.value)}>
+                        <option value="calidadAire">Calidad del aire</option>
+                        <option value="ruido">Ruido</option>
+                        <option value="boyas">Boyas</option>
+                    </select>
+                </div>
+            </div>
         </section>
     );
 };
