@@ -1,10 +1,7 @@
 "use client"; // Se agrega "use client" para usar hooks
-
 import React, { useState, useEffect, useRef } from 'react';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import "./module.css";
 import datos from './datos.json';
+import "./module.css";
 
 const MapaBahia = () => {
     const [selectedDataType, setSelectedDataType] = useState('calidadAire');
@@ -12,33 +9,38 @@ const MapaBahia = () => {
     const layerMarkersRef = useRef(null);
 
     useEffect(() => {
-        // Crear el mapa una vez
-        const map = L.map('mapabahia').setView(new L.LatLng(-38.725465, -62.281848), 12);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 16,
-            minZoom: 12,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            opacity: 1,
-            scrollWheelZoom: false
-        }).addTo(map);
-        mapRef.current = map;
+        if (typeof window !== 'undefined') {
+            const L = require('leaflet');
+            require('leaflet/dist/leaflet.css');
+            
+            const map = L.map('mapabahia').setView(new L.LatLng(-38.725465, -62.281848), 12);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 16,
+                minZoom: 12,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                opacity: 1,
+                scrollWheelZoom: false
+            }).addTo(map);
+            mapRef.current = map;
 
-        // Crear una capa de marcadores una vez
-        const layerMarkers = L.layerGroup().addTo(map);
-        layerMarkersRef.current = layerMarkers;
+            const layerMarkers = L.layerGroup().addTo(map);
+            layerMarkersRef.current = layerMarkers;
 
-        return () => {
-            map.remove();
-        };
+            return () => {
+                map.remove();
+            };
+        }
     }, []);
 
     useEffect(() => {
-        renderMarkers();
+        if (typeof window !== 'undefined') {
+            renderMarkers();
+        }
     }, [selectedDataType]);
 
     const renderMarkers = () => {
         const selectedData = datos[selectedDataType];
-        layerMarkersRef.current.clearLayers(); // Limpiar marcadores existentes
+        layerMarkersRef.current.clearLayers();
         Object.keys(selectedData).forEach(sensorKey => {
             const sensorData = selectedData[sensorKey];
             const marker = L.marker([sensorData.lat, sensorData.lng]);
@@ -58,7 +60,7 @@ const MapaBahia = () => {
                 <div className="map-header-description">Sensores ambientales</div>
             </div>
             <div id="mapabahia">
-                <div className="leaflet-control map-selector">
+                <div className="map-selector">
                     <select value={selectedDataType} onChange={(e) => handleDataTypeChange(e.target.value)}>
                         <option value="calidadAire">Calidad del aire</option>
                         <option value="ruido">Ruido</option>
