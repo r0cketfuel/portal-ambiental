@@ -1,7 +1,10 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
-import datos from './datos.json';
 import "./module.css";
+
+import React, { useState, useEffect, useRef }   from 'react';
+import { FontAwesomeIcon }                      from '@fortawesome/react-fontawesome';
+import { faLocationDot }                        from '@fortawesome/free-solid-svg-icons';
+import datos                                    from './datos.json';
 
 
 const MapaBahia = () => {
@@ -57,7 +60,7 @@ const MapaBahia = () => {
     return (
         <section id="section2">
             <div className="map-header">
-                <div className="map-header-icon"><i className="fa-solid fa-location-dot"></i></div>
+                <div className="map-header-icon"><FontAwesomeIcon icon={faLocationDot} /></div>
                 <div className="map-header-description">Sensores ambientales</div>
             </div>
             <div id="mapabahia">

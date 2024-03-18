@@ -1,6 +1,8 @@
 "use client"
 import "./module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect } 	from "react";
+import { FontAwesomeIcon }		from '@fortawesome/react-fontawesome';
+import { faChevronUp }          from '@fortawesome/free-solid-svg-icons';
 
 export default function BackToTop() {
 	const [isVisible, setIsVisible] = useState(false);
@@ -35,7 +37,7 @@ export default function BackToTop() {
 			onClick={scrollToTop}
 		>
 			<div className="backToTop-icon">
-				<i className="fa-solid fa-chevron-up"></i>
+				<FontAwesomeIcon icon={faChevronUp} />
 			</div>
 		</div>
 	);
