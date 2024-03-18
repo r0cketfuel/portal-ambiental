@@ -18,12 +18,15 @@ const MapaBahia = () => {
             require('leaflet/dist/leaflet.css');
             
             const map = L.map('mapabahia').setView(new L.LatLng(-38.725465, -62.281848), 12);
+
+            // Deshabilita el zoom en el mapa usando la rueda del mouse
+            map.scrollWheelZoom.disable()
+
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 16,
                 minZoom: 12,
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
                 opacity: 1,
-                scrollWheelZoom: false
             }).addTo(map);
             mapRef.current = map;
 
