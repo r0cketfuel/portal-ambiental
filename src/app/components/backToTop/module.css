@@ -13,7 +13,6 @@
 */
 
 .backToTop {
-    display:                            none;
     position: 						    fixed;
     right: 							    -40px;
     bottom: 						    15px;
