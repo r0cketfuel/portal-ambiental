@@ -1,117 +1,139 @@
-#mapabahia 
-{
-    width:              100%;
-    height:             800px;
-    background-color:   #FFEECC;
+#mapabahia {
+	width: 100%;
+	height: 800px;
+	background-color: #FFEECC;
 }
+
+.map-header {
+	display: flex;
+	flex-flow: row nowrap;
+	gap: 10px;
+	background-color: #203943;
+	padding: 25px;
+	font-size: 28px;
+	user-select: none;
+}
+
+.map-header-description {
+	color: white;
+}
+
+.map-header-icon {
+	color: #009688;
+}
+
 
 #valores_emcabb1 table,
 #valores_emcabb2 table,
 #valores_emcabb3 table {
-    border:             0;
+	border: 0;
 }
 
 #valores_emcabb1 table td,
 #valores_emcabb2 table td,
 #valores_emcabb3 table td {
-    border:             0;
+	border: 0;
 }
 
 #valores_emcabb1 table tr:first-child {
-    border-top:         solid 2px #d7d7d7;
+	border-top: solid 2px #d7d7d7;
 }
 
 #valores_emcabb1 table tr:last-child {
-    border-bottom:      solid 2px #d7d7d7;
+	border-bottom: solid 2px #d7d7d7;
 }
 
 #valores_emcabb1 table tr:nth-child(odd) {
-    background-color:   #e9e9e9;
-    border-bottom:      solid 1px #dedede;
+	background-color: #e9e9e9;
+	border-bottom: solid 1px #dedede;
 }
 
 #valores_emcabb1 table tr:nth-child(even) {
-    background-color:   #ffffff;
-    border-bottom:      solid 1px #dedede;
+	background-color: #ffffff;
+	border-bottom: solid 1px #dedede;
 }
 
 #valores_emcabb2 table tr:first-child {
-    border-top:         solid 2px #d7d7d7;
+	border-top: solid 2px #d7d7d7;
 }
 
 #valores_emcabb2 table tr:last-child {
-    border-bottom:      solid 2px #d7d7d7;
+	border-bottom: solid 2px #d7d7d7;
 }
 
 #valores_emcabb2 table tr:nth-child(odd) {
-    background-color:   #e9e9e9;
-    border-bottom:      solid 1px #dedede;
+	background-color: #e9e9e9;
+	border-bottom: solid 1px #dedede;
 }
+
 #valores_emcabb2 table tr:nth-child(even) {
-    background-color:   #ffffff;
-    border-bottom:      solid 1px #dedede;
+	background-color: #ffffff;
+	border-bottom: solid 1px #dedede;
 }
 
 #valores_emcabb3 table tr:first-child {
-    border-top:         solid 2px #d7d7d7;
+	border-top: solid 2px #d7d7d7;
 }
 
 #valores_emcabb3 table tr:last-child {
-    border-bottom:      solid 2px #d7d7d7;
+	border-bottom: solid 2px #d7d7d7;
 }
 
 #valores_emcabb3 table tr:nth-child(odd) {
-    background-color:   #e9e9e9;
-    border-bottom:      solid 1px #dedede;
+	background-color: #e9e9e9;
+	border-bottom: solid 1px #dedede;
 }
 
 #valores_emcabb3 table tr:nth-child(even) {
-    background-color:   #ffffff;
-    border-bottom:      solid 1px #dedede;
+	background-color: #ffffff;
+	border-bottom: solid 1px #dedede;
 }
 
-#valores_emcabb1 td.indicador {white-space:nowrap; }
+#valores_emcabb1 td.indicador {
+	white-space: nowrap;
+}
 
 .color_nivel_contaminante1 {
-    background-color:   #00e400;
+	background-color: #00e400;
 }
 
 .color_nivel_contaminante2 {
-    background-color:   #FFFF00;
+	background-color: #FFFF00;
 }
 
 .color_nivel_contaminante3 {
-    background-color:   #FF7E00;
+	background-color: #FF7E00;
 }
 
 .color_nivel_contaminante4 {
-    background-color:   #FF0000;
+	background-color: #FF0000;
 }
 
 .color_nivel_contaminante5 {
-    background-color:   #8F3F97;
+	background-color: #8F3F97;
 }
 
 .color_nivel_contaminante6 {
-    background-color:   #7E0023;
+	background-color: #7E0023;
 }
 
 .color_nivel_contaminante0 table tr:nth-child(odd) {
-    background-color:   #e9e9e9;
+	background-color: #e9e9e9;
 }
 
 .color_nivel_contaminante0 table tr:nth-child(even) {
-    background-color:   #ffffff;
+	background-color: #ffffff;
 }
 
 .map-selector {
-    position: 			absolute;
-    top: 				10px;
-    right: 				10px;
-    z-index: 			1000;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 1000;
 }
 
 .map-selector select {
-    padding: 			5px;
-    font-size: 			14px;
+	user-select: none;
+	padding: 5px;
+	font-size: 14px;
 }

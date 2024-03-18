@@ -52,20 +52,3 @@ section {
 h1 {
     margin:                         40px 0;
 }
-
-.map-header {
-    display:                        flex;
-    flex-flow:                      row nowrap;
-    gap:                            10px;
-    background-color:               #203943;    
-    padding:                        25px;
-    font-size:                      22px;
-}
-
-.map-header-description {
-    color:                          white;
-}
-
-.map-header-icon {
-    color:                          #009688;
-}
