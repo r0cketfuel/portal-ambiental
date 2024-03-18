@@ -1,7 +1,8 @@
-"use client"; // Se agrega "use client" para usar hooks
+"use client";
 import React, { useState, useEffect, useRef } from 'react';
 import datos from './datos.json';
 import "./module.css";
+
 
 const MapaBahia = () => {
     const [selectedDataType, setSelectedDataType] = useState('calidadAire');
