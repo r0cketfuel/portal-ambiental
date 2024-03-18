@@ -8,9 +8,13 @@ import CalidadAire 	from "./components/calidad-aire/Calidad-aire";
 export default function Home() {
 	return (
 		<div>
-			<CalidadAire/>
+			<div className="body-container">
+				<CalidadAire/>
+			</div>
 			<Mapa/>
-			<Partners/>
+			<div className="body-container">
+				<Partners/>
+			</div>
 		</div>
 	);
 }
