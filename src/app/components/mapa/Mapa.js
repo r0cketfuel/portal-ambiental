@@ -1,14 +1,17 @@
 "use client";
 import "./module.css";
 
-import React, { useState, useEffect, useRef }   from 'react';
-import { FontAwesomeIcon }                      from '@fortawesome/react-fontawesome';
-import { faLocationDot }                        from '@fortawesome/free-solid-svg-icons';
-import datos                                    from './datos.json';
-
+import React, { useState, useEffect, useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import datos from './datos.json';
 
 const MapaBahia = () => {
-    const [selectedDataType, setSelectedDataType] = useState('calidadAire');
+    const [selectedDataTypes, setSelectedDataTypes] = useState({
+        calidadAire: true,
+        ruido: false,
+        boyas: false
+    });
     const mapRef = useRef(null);
     const layerMarkersRef = useRef(null);
 
@@ -16,7 +19,7 @@ const MapaBahia = () => {
         if (typeof window !== 'undefined') {
             const L = require('leaflet');
             require('leaflet/dist/leaflet.css');
-            
+
             const map = L.map('mapabahia').setView(new L.LatLng(-38.725465, -62.281848), 12);
 
             // Deshabilita el zoom en el mapa usando la rueda del mouse
@@ -43,21 +46,28 @@ const MapaBahia = () => {
         if (typeof window !== 'undefined') {
             renderMarkers();
         }
-    }, [selectedDataType]);
+    }, [selectedDataTypes]);
 
     const renderMarkers = () => {
-        const selectedData = datos[selectedDataType];
         layerMarkersRef.current.clearLayers();
-        Object.keys(selectedData).forEach(sensorKey => {
-            const sensorData = selectedData[sensorKey];
-            const marker = L.marker([sensorData.lat, sensorData.lng]);
-            marker.bindPopup(sensorData.contenido);
-            marker.addTo(layerMarkersRef.current);
+        Object.keys(selectedDataTypes).forEach(dataType => {
+            if (selectedDataTypes[dataType]) {
+                const selectedData = datos[dataType];
+                Object.keys(selectedData).forEach(sensorKey => {
+                    const sensorData = selectedData[sensorKey];
+                    const marker = L.marker([sensorData.lat, sensorData.lng]);
+                    marker.bindPopup(sensorData.contenido);
+                    marker.addTo(layerMarkersRef.current);
+                });
+            }
         });
     };
 
     const handleDataTypeChange = (dataType) => {
-        setSelectedDataType(dataType);
+        setSelectedDataTypes(prevState => ({
+            ...prevState,
+            [dataType]: !prevState[dataType]
+        }));
     };
 
     return (
@@ -68,11 +78,31 @@ const MapaBahia = () => {
             </div>
             <div id="mapabahia">
                 <div className="map-selector">
-                    <select value={selectedDataType} onChange={(e) => handleDataTypeChange(e.target.value)}>
-                        <option value="calidadAire">Calidad del aire</option>
-                        <option value="ruido">Ruido</option>
-                        <option value="boyas">Boyas</option>
-                    </select>
+                <p>Sensores:</p>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={selectedDataTypes.calidadAire}
+                            onChange={() => handleDataTypeChange("calidadAire")}
+                        />
+                        Calidad del aire
+                    </label>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={selectedDataTypes.ruido}
+                            onChange={() => handleDataTypeChange("ruido")}
+                        />
+                        Ruido
+                    </label>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={selectedDataTypes.boyas}
+                            onChange={() => handleDataTypeChange("boyas")}
+                        />
+                        Boyas
+                    </label>
                 </div>
             </div>
         </section>
