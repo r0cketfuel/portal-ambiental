@@ -1,10 +1,10 @@
 "use client";
 import "./module.css";
 
-import React, { useState, useEffect, useRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
-import datos from './datos.json';
+import React, { useState, useEffect, useRef }   from 'react';
+import { FontAwesomeIcon }                      from '@fortawesome/react-fontawesome';
+import { faLocationDot }                        from '@fortawesome/free-solid-svg-icons';
+import datos                                    from './datos.json';
 
 const MapaBahia = () => {
     const [selectedDataTypes, setSelectedDataTypes] = useState({
